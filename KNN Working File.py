@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import sklearn
-import matplotlib.pyplot as plt
 from sklearn.utils import shuffle
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import linear_model, preprocessing
