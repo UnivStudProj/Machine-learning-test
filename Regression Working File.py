@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import pickle
 from sklearn import linear_model
 from sklearn.utils import shuffle
-from matplotlib import style
 
 data = pd.read_csv('data/student-mat.csv', sep=';')
 data = data[['G1', 'G2', 'G3', 'studytime', 'failures', 'absences']]
@@ -39,14 +38,19 @@ print(f'Coefficient: {linear.coef_}')
 print(f'Intercept: {linear.intercept_}')
 
 predictions = linear.predict(x_test)
-
-for x in range(len(predictions)):
-    print(predictions[x], x_test[x], y_test[x])
+# for x in range(len(predictions)):
+#     print(predictions[x], x_test[x], y_test[x])
 
 p = 'absences'
-style.use('ggplot')
 fig, ax = plt.subplots()
-ax.scatter(data[p], data['G3'])
+
+ax.scatter(data[p][:40], data['G2'][:40], label='2nd grade')
+ax.scatter(data[p][:40], predictions, label='3rd grade (predicted)')
+
 ax.set_xlabel(p)
 ax.set_ylabel('Final Grade')
+
+ax.legend()
+ax.set_axisbelow(True)
+plt.grid()
 plt.show()
